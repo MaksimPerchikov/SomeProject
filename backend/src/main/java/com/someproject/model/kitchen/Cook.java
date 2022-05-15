@@ -1,23 +1,26 @@
-package com.someproject.model;
+package com.someproject.model.kitchen;
 
 import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.SecondaryTable;
+import javax.persistence.OneToOne;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Getter
 @Setter
-@ToString
-public class Information {
+public class Cook {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private String informationString;
+    //private String nameCook;
+
+    @OneToOne
+    private Ordering order;
 }
