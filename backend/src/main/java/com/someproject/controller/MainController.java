@@ -1,8 +1,10 @@
 package com.someproject.controller;
 
-import lombok.Getter;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.someproject.model.kitchen.Product;
+import com.someproject.service.ServiceMineImplInter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,9 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class MainController {
 
+    private ServiceMineImplInter serviceMineImplInter;
 
-    @GetMapping("/hi")
-    public String showMeSomeLine(){
-        return "Hello, i'm live!";
+    @Autowired
+    public MainController(ServiceMineImplInter serviceMineImplInter) {
+        this.serviceMineImplInter = serviceMineImplInter;
+    }
+
+    @PostMapping("addPr")
+    public String addProductMethod(@RequestBody Product product){
+        return serviceMineImplInter.addProduct(product);
     }
 }
