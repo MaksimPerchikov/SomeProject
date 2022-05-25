@@ -1,26 +1,48 @@
 package com.someproject.controller;
 
 import com.someproject.model.kitchen.Product;
-import com.someproject.service.ServiceMineImplInter;
+import com.someproject.service.ServiceMainImplInter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class MainController {
 
-    private ServiceMineImplInter serviceMineImplInter;
+    private ServiceMainImplInter serviceMainImplInter;
 
     @Autowired
-    public MainController(ServiceMineImplInter serviceMineImplInter) {
-        this.serviceMineImplInter = serviceMineImplInter;
+    public MainController(ServiceMainImplInter serviceMainImplInter) {
+        this.serviceMainImplInter = serviceMainImplInter;
     }
 
-    @PostMapping("addPr")
+    @PostMapping("addProduct")
     public String addProductMethod(@RequestBody Product product){
-        return serviceMineImplInter.addProduct(product);
+        return serviceMainImplInter.addProduct(product);
+    }
+
+    @DeleteMapping("delProdById/{id}")
+    public String deleteProductByIdMethodInController(@PathVariable("id") Long id){
+           return serviceMainImplInter.deleteProductById(id);
+    }
+    @GetMapping("findProdById/{id}")
+    public Product findProductByIdMethodInController(@PathVariable("id") Long id){
+        return serviceMainImplInter.findProductById(id);
+    }
+
+    @GetMapping("findAllProd")
+    public List<Product> findAllProductMethodInController(){
+        return serviceMainImplInter.findAllProducts();
+    }
+    @DeleteMapping("delAllProd")
+    public String deleteAllProductMethodInController(){
+        return serviceMainImplInter.deleteAllProducts();
+    }
+
+    @GetMapping("hello")
+    public String hello(){
+        return "Hello!";
     }
 }
