@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class ServiceMineImplInter implements CookOrderingMenuProductInterface {
+public class ServiceMainImplInter implements CookOrderingMenuProductInterface {
 
     private final CookRepository cookRepository;
     private final MenuRepository menuRepository;
@@ -22,7 +22,7 @@ public class ServiceMineImplInter implements CookOrderingMenuProductInterface {
     private final ProductRepository productRepository;
 
     @Autowired
-    public ServiceMineImplInter(CookRepository cookRepository,
+    public ServiceMainImplInter(CookRepository cookRepository,
                                 MenuRepository menuRepository,
                                 OrderingRepository orderingRepository,
                                 ProductRepository productRepository) {
