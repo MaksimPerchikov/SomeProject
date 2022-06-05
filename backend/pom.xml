@@ -44,6 +44,11 @@
             <artifactId>spring-boot-starter-security</artifactId>
             <version>2.5.6</version>
         </dependency>
+        <dependency>
+            <groupId>ru.ibs.nsi</groupId>
+            <artifactId>api</artifactId>
+            <version>1.2.2</version>
+        </dependency>
     </dependencies>
 
     <build>

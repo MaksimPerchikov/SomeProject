@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface CookOrderingMenuProductInterface {
 
-    String addProduct(Product product);
-    String deleteProductById(Long id);
-    Product findProductById(Long id);
-    List<Product> findAllProducts();
-    String deleteAllProducts();
+    String addProductService(Product product);
+    String deleteProductByIdService(Long id);
+    Product findProductByIdService(Long id);
+    List<Product> findAllProductsService();
+    String deleteAllProductsService();
 }

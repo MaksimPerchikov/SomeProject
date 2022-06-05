@@ -1,0 +1,9 @@
+Инструкция. Собираем проект : mvn clean package && java -jar target/spring-boot-docker-0.0.1-SNAPSHOT.jar
+
+Собираем образ и заускаем контейнер : docker build -t spring-boot-docker:0.0.1 . (проверяем создание образа с помощью docker images)
+
+Запускаем контейнер : docker run -d -p 8080:8080 -t spring-boot-docker:0.0.1
+
+Второе задание. Композ. собираем проект: mvn clean package
+
+запускаем контейнеры : docker-compose up --build

@@ -1,6 +1,7 @@
 package com.someproject.configuration.security;
 
 import com.someproject.configuration.security.encoderPass.PasswordConfig;
+import java.util.concurrent.TimeUnit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.util.matcher.AndRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import static com.someproject.configuration.security.ApplicationUserRole.*;
 import static org.springframework.security.core.userdetails.User.builder;
@@ -30,7 +33,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        /*http
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/hello").permitAll()
@@ -39,7 +42,35 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic();
+                .httpBasic();*/
+
+        http
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/api/hello").permitAll()
+            .antMatchers("/api/addProduct").hasAnyRole(ADMIN.name(), COOK.name())
+            .anyRequest()
+            .authenticated()
+            .and()
+            .formLogin()
+            .loginPage("/login")
+            .defaultSuccessUrl("/api/hello")
+            .passwordParameter("password")
+            .usernameParameter("username")
+            .and()
+            .rememberMe()
+            .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
+            .key("somethingmykey")
+            .rememberMeParameter("remember-me")
+            .and()
+            .logout()
+            .logoutUrl("/logout")
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout","GET"))
+            .clearAuthentication(true)
+            .invalidateHttpSession(true)
+            .deleteCookies("JSESSIONID", "remember-me")
+            .logoutSuccessUrl("/login");
+
     }
 
     @Bean
@@ -47,7 +78,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected UserDetailsService userDetailsService() {
        UserDetails admin = User.builder()
-                .username("user")
+                .username("adm")
                 .password(passwordEncoder.encode("123"))
                 .roles(ADMIN.name())
                .build();
