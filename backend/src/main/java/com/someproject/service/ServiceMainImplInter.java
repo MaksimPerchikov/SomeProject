@@ -1,66 +1,86 @@
 package com.someproject.service;
 
+import com.someproject.Exceptions.AllExceptions;
 import com.someproject.model.kitchen.Product;
-import com.someproject.repository.CookRepository;
-import com.someproject.repository.MenuRepository;
-import com.someproject.repository.OrderingRepository;
-import com.someproject.repository.ProductRepository;
+import com.someproject.operations.mathOperations.OperationsOver;
+import com.someproject.operations.mathOperations.VariousOperationsOverProduct;
 import com.someproject.service.interfases.CookOrderingMenuProductInterface;
+import com.someproject.service.operationsOver.OperationsWithRepository;
+import com.someproject.verifyWords.DuplicateWordsVerify;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ServiceMainImplInter implements CookOrderingMenuProductInterface {
 
-    private final CookRepository cookRepository;
-    private final MenuRepository menuRepository;
-    private final OrderingRepository orderingRepository;
-    private final ProductRepository productRepository;
+    private final OperationsWithRepository operations;
+    private final AllExceptions allExceptions;
+    private final DuplicateWordsVerify duplicateWordsVerify;
 
     @Autowired
-    public ServiceMainImplInter(CookRepository cookRepository,
-                                MenuRepository menuRepository,
-                                OrderingRepository orderingRepository,
-                                ProductRepository productRepository) {
-        this.cookRepository = cookRepository;
-        this.menuRepository = menuRepository;
-        this.orderingRepository = orderingRepository;
-        this.productRepository = productRepository;
+    public ServiceMainImplInter(DuplicateWordsVerify duplicateWordsVerify,
+        AllExceptions allExceptions,
+        OperationsWithRepository operations
+                                ) {
+        this.duplicateWordsVerify = duplicateWordsVerify;
+        this.allExceptions = allExceptions;
+        this.operations = operations;
     }
 
     @Override
-    public String addProduct(Product product) {
-        productRepository.save(product);
-        return "Добавлен продукт в количестве: "+ product.getNameProduct()+", "+product.getQuantity().toString();
+    public String addProductService(Product product){
+
+        if(duplicateWordsVerify.duplicateSingleWordsName(product.getNameProduct())){
+            OperationsOver operationsOver = new VariousOperationsOverProduct(operations);
+            Product productTwo = operationsOver.plusQuantity(product);
+            return "Продукт с наименованием "+product.getNameProduct()+" уже имеется!"
+                +  "Запасы пополнены на: " + product.getQuantity()
+                .toString()+ " и получилось общее количество:"+ productTwo.getQuantity();
+        }else {
+            operations.addProduct(product);
+            return "Добавлен продукт в количестве: " + product.getNameProduct() + ", " + product.getQuantity()
+                .toString();
+        }
     }
 
     @Override
-    public String deleteProductById(Long id) {
-        Optional<Product> findProduct = productRepository.findById(id);
-        productRepository.deleteById(id);
-        return "Удален продукт в количестве: "+ findProduct.get().getNameProduct()+", "+findProduct.get().getQuantity().toString();
+    public String deleteProductByIdService(Long id) {
+        try {
+            List<Product> productList = findAllProductsService();
+            Optional<Product> optionalProduct = productList.stream()
+                .filter(elementProductDeleteById -> elementProductDeleteById.equals(new Product(id)))
+                .findFirst();
+            operations.deleteByIdProduct(optionalProduct.get().getId());
+            return "Добавлен продукт: "+optionalProduct.get().getNameProduct()
+                + "в количестве: "+optionalProduct.get().getQuantity();
+        }catch (Exception exception){
+          allExceptions.showMeExceptionWithMyMessage
+                ("Неверный id или продукт с "+id+" не найден",exception);
+            return exception.getMessage();
+        }
     }
 
     @Override
-    public Product findProductById(Long id) {
-        Optional<Product> findProduct = productRepository.findById(id);
-        return findProduct.get();
+    public Product findProductByIdService(Long id) {
+
+
+        Product findProduct = operations.findByIdProduct(id);
+        return findProduct;
     }
 
     @Override
-    public List<Product> findAllProducts() {
-       List<Product> productList  = productRepository.findAll();
+    public List<Product> findAllProductsService() {
+       List<Product> productList  = operations.findAllProducts();
        return productList;
     }
 
     @Override
-    public String deleteAllProducts() {
-        List<Product> productList  = productRepository.findAll();
-        productRepository.deleteAll();
+    public String deleteAllProductsService() {
+        List<Product> productList  = operations.findAllProducts();
+        operations.deleteAllProducts();
         return "Удалены все продукты: "+ productList;
     }
 }

@@ -20,25 +20,25 @@ public class MainController {
 
     @PostMapping("addProduct")
     public String addProductMethod(@RequestBody Product product){
-        return serviceMainImplInter.addProduct(product);
+        return serviceMainImplInter.addProductService(product);
     }
 
     @DeleteMapping("delProdById/{id}")
     public String deleteProductByIdMethodInController(@PathVariable("id") Long id){
-           return serviceMainImplInter.deleteProductById(id);
+           return serviceMainImplInter.deleteProductByIdService(id);
     }
     @GetMapping("findProdById/{id}")
     public Product findProductByIdMethodInController(@PathVariable("id") Long id){
-        return serviceMainImplInter.findProductById(id);
+        return serviceMainImplInter.findProductByIdService(id);
     }
 
     @GetMapping("findAllProd")
     public List<Product> findAllProductMethodInController(){
-        return serviceMainImplInter.findAllProducts();
+        return serviceMainImplInter.findAllProductsService();
     }
     @DeleteMapping("delAllProd")
     public String deleteAllProductMethodInController(){
-        return serviceMainImplInter.deleteAllProducts();
+        return serviceMainImplInter.deleteAllProductsService();
     }
 
     @GetMapping("hello")
