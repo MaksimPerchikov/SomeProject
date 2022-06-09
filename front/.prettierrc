@@ -1,0 +1,7 @@
+{
+  "semicolons": true,
+  "tabWidth": 2,
+  "printWidth": 80,
+  "quotes": false,
+  "trailingComma": "all"
+}
