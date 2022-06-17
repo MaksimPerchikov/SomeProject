@@ -1,14 +1,15 @@
 import { ThemeProvider } from "@mui/material";
 import { FC } from "react";
 
-import theme from "../theme/light";
+import main from "../theme/main";
 import { MainContainer } from "./App.styled";
+import { Auth } from "./pages/Auth/Auth";
 
 export const App: FC = () => {
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={main}>
       <MainContainer>
-        <div>hello</div>
+        <Auth />
       </MainContainer>
     </ThemeProvider>
   );
