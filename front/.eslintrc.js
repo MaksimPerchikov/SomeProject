@@ -6,7 +6,7 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
   ],
   parser: "@typescript-eslint/parser",
@@ -22,7 +22,7 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
-    "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"],
+    // "no-unused-vars": "off",
+    // "@typescript-eslint/no-unused-vars": ["error"],
   },
 };
