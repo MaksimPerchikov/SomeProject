@@ -17,6 +17,7 @@ const theme = createTheme({
     },
     input: {
       background: "#1F222A",
+      border: "#FFF",
     },
     text: {
       primary: "#FFF",
