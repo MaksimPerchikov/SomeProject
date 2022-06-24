@@ -5,6 +5,7 @@ import { COLOR } from "../../../theme/main";
 export interface InputStyledProps extends InputProps {
   isError?: boolean;
   isFilled?: boolean;
+  id: string;
 }
 
 const getBorder = (theme: Theme, isError?: boolean, isFilled?: boolean) => {

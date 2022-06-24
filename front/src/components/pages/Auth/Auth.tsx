@@ -1,11 +1,13 @@
-import React, { ChangeEvent, FC, useCallback, useState } from "react";
+import React, { FC, useCallback } from "react";
 
+import { useForm } from "../../hooks/useForm";
 import {
   AuthContainer,
   AuthForm,
   AuthInput,
   AuthInputLabel,
   AuthSubmit,
+  HelperText,
   InputControl,
 } from "./Auth.styled";
 
@@ -15,16 +17,7 @@ export interface IAuthForm {
 }
 
 export const Auth: FC = () => {
-  const [form, setForm] = useState<IAuthForm>({});
-
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const { id, value } = e.target;
-
-      setForm({ ...form, [id]: value });
-    },
-    [form],
-  );
+  const { formState, handleInputForm, error } = useForm<IAuthForm>();
 
   const handleSubmit = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -32,33 +25,39 @@ export const Auth: FC = () => {
 
   return (
     <AuthContainer>
-      <AuthForm onSubmit={handleSubmit}>
+      <AuthForm onSubmit={handleSubmit} noValidate>
         {/* <FormInfo>Неверный логин или пароль</FormInfo> */}
         <InputControl>
-          <AuthInputLabel htmlFor="login">Логин</AuthInputLabel>
+          <AuthInputLabel htmlFor="login" required>
+            Логин
+          </AuthInputLabel>
           <AuthInput
             id="login"
             type="text"
             disableUnderline
-            onChange={handleChange}
-            value={form?.login}
-            isFilled={!!form?.login}
-            // isError={!form?.login}
+            onChange={handleInputForm}
+            value={formState?.login}
+            isFilled={!!formState?.login}
+            isError={error.login}
+            required
           />
-          {/* {!form.login && <HelperText>Обязательное поле</HelperText>} */}
+          {error.login && <HelperText>Обязательное поле</HelperText>}
         </InputControl>
         <InputControl>
-          <AuthInputLabel htmlFor="password">Пароль</AuthInputLabel>
+          <AuthInputLabel htmlFor="password" required>
+            Пароль
+          </AuthInputLabel>
           <AuthInput
             id="password"
             type="password"
             disableUnderline
-            onChange={handleChange}
-            value={form?.password}
-            isFilled={!!form?.password}
-            // isError={!form?.password}
+            onChange={handleInputForm}
+            value={formState?.password}
+            isFilled={!!formState?.password}
+            isError={error.password}
+            required
           />
-          {/* {!form.password && <HelperText>Обязательное поле</HelperText>} */}
+          {error.password && <HelperText>Обязательное поле</HelperText>}
         </InputControl>
         <AuthSubmit type="submit">Войти</AuthSubmit>
       </AuthForm>
