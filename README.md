@@ -5,6 +5,9 @@ password:123
 выход /logout
 
 Методы взаимодействия с продуктами:
+
+api/products/{id}
+
 api/addProduct
 api/delProdById/{id}
 api/findProdById/{id
