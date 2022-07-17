@@ -1,3 +1,4 @@
+/*
 package com.someproject.model.kitchen;
 
 import lombok.*;
@@ -20,3 +21,4 @@ public class Ordering {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Menu> nameOrdering;
 }
+*/

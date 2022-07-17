@@ -4,7 +4,7 @@ import com.someproject.Exceptions.AllExceptions;
 import com.someproject.model.kitchen.Product;
 import com.someproject.operations.mathOperations.OperationsOver;
 import com.someproject.operations.mathOperations.VariousOperationsOverProduct;
-import com.someproject.service.interfases.CookOrderingMenuProductInterface;
+import com.someproject.service.interfases.MainInterfaceForGiveMethods;
 import com.someproject.service.operationsOver.OperationsWithRepository;
 import com.someproject.verifyWords.DuplicateWordsVerify;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ServiceMainImplInter implements CookOrderingMenuProductInterface {
+public class ServiceMainImplInter implements MainInterfaceForGiveMethods {
 
     private final OperationsWithRepository operations;
     private final AllExceptions allExceptions;
@@ -22,27 +22,27 @@ public class ServiceMainImplInter implements CookOrderingMenuProductInterface {
 
     @Autowired
     public ServiceMainImplInter(DuplicateWordsVerify duplicateWordsVerify,
-        AllExceptions allExceptions,
-        OperationsWithRepository operations
-                                ) {
+                                AllExceptions allExceptions,
+                                OperationsWithRepository operations
+    ) {
         this.duplicateWordsVerify = duplicateWordsVerify;
         this.allExceptions = allExceptions;
         this.operations = operations;
     }
 
     @Override
-    public String addProductService(Product product){
+    public String addProductService(Product product) {
 
-        if(duplicateWordsVerify.duplicateSingleWordsName(product.getNameProduct())){
+        if (duplicateWordsVerify.duplicateSingleWordsName(product.getNameProduct())) {
             OperationsOver operationsOver = new VariousOperationsOverProduct(operations);
             Product productTwo = operationsOver.plusQuantity(product);
-            return "Продукт с наименованием "+product.getNameProduct()+" уже имеется!"
-                +  "Запасы пополнены на: " + product.getQuantity()
-                .toString()+ " и получилось общее количество:"+ productTwo.getQuantity();
-        }else {
+            return "Продукт с наименованием " + product.getNameProduct() + " уже имеется!"
+                    + "Запасы пополнены на: " + product.getQuantityProduct()
+                    .toString() + " и получилось общее количество:" + productTwo.getQuantityProduct();
+        } else {
             operations.addProduct(product);
-            return "Добавлен продукт в количестве: " + product.getNameProduct() + ", " + product.getQuantity()
-                .toString();
+            return "Добавлен продукт в количестве: " + product.getNameProduct() + ", " + product.getQuantityProduct()
+                    .toString();
         }
     }
 
@@ -51,14 +51,14 @@ public class ServiceMainImplInter implements CookOrderingMenuProductInterface {
         try {
             List<Product> productList = findAllProductsService();
             Optional<Product> optionalProduct = productList.stream()
-                .filter(elementProductDeleteById -> elementProductDeleteById.equals(new Product(id)))
-                .findFirst();
+                    .filter(elementProductDeleteById -> elementProductDeleteById.equals(new Product(id)))
+                    .findFirst();
             operations.deleteByIdProduct(optionalProduct.get().getId());
-            return "Добавлен продукт: "+optionalProduct.get().getNameProduct()
-                + "в количестве: "+optionalProduct.get().getQuantity();
-        }catch (Exception exception){
-          allExceptions.showMeExceptionWithMyMessage
-                ("Неверный id или продукт с "+id+" не найден",exception);
+            return "Добавлен продукт: " + optionalProduct.get().getNameProduct()
+                    + "в количестве: " + optionalProduct.get().getQuantityProduct();
+        } catch (Exception exception) {
+            allExceptions.showMeExceptionWithMyMessage
+                    ("Неверный id или продукт с " + id + " не найден", exception);
             return exception.getMessage();
         }
     }
@@ -73,14 +73,14 @@ public class ServiceMainImplInter implements CookOrderingMenuProductInterface {
 
     @Override
     public List<Product> findAllProductsService() {
-       List<Product> productList  = operations.findAllProducts();
-       return productList;
+        List<Product> productList = operations.findAllProducts();
+        return productList;
     }
 
     @Override
     public String deleteAllProductsService() {
-        List<Product> productList  = operations.findAllProducts();
+        List<Product> productList = operations.findAllProducts();
         operations.deleteAllProducts();
-        return "Удалены все продукты: "+ productList;
+        return "Удалены все продукты: " + productList;
     }
 }

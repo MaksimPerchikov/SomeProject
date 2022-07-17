@@ -1,3 +1,4 @@
+/*
 package com.someproject.configuration.security;
 
 import com.someproject.configuration.security.encoderPass.PasswordConfig;
@@ -33,7 +34,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        /*http
+
+        http
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/api/hello").permitAll()
@@ -42,9 +44,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .authenticated()
                 .and()
-                .httpBasic();*/
+                .httpBasic();
 
-        http
+      */
+/*  http
             .csrf().disable()
             .authorizeRequests()
             .antMatchers("/api/hello").permitAll()
@@ -69,7 +72,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             .clearAuthentication(true)
             .invalidateHttpSession(true)
             .deleteCookies("JSESSIONID", "remember-me")
-            .logoutSuccessUrl("/login");
+            .logoutSuccessUrl("/login");*//*
+
 
     }
 
@@ -97,3 +101,4 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         return new InMemoryUserDetailsManager(admin,cook,customer);
     }
 }
+*/

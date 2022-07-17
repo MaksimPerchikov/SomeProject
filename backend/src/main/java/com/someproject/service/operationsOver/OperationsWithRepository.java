@@ -1,12 +1,11 @@
 package com.someproject.service.operationsOver;
 
 import com.someproject.model.kitchen.Product;
-import com.someproject.repository.CookRepository;
-import com.someproject.repository.MenuRepository;
-import com.someproject.repository.OrderingRepository;
 import com.someproject.repository.ProductRepository;
 import com.someproject.service.operationsOver.interfaces.OperationsWithRepositoryInt;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,18 +13,19 @@ import org.springframework.stereotype.Service;
 public class OperationsWithRepository implements OperationsWithRepositoryInt {
 
     private ProductRepository productRepository;
-    private OrderingRepository orderingRepository;
+    /*private OrderingRepository orderingRepository;
     private MenuRepository menuRepository;
-    private CookRepository cookRepository;
+    private CookRepository cookRepository;*/
 
     @Autowired
-    public OperationsWithRepository(ProductRepository productRepository,
-        OrderingRepository orderingRepository, MenuRepository menuRepository,
-        CookRepository cookRepository) {
+    public OperationsWithRepository(ProductRepository productRepository/*,
+                                    OrderingRepository orderingRepository,
+                                    MenuRepository menuRepository,
+                                    CookRepository cookRepository*/) {
         this.productRepository = productRepository;
-        this.orderingRepository = orderingRepository;
+        /*this.orderingRepository = orderingRepository;
         this.menuRepository = menuRepository;
-        this.cookRepository = cookRepository;
+        this.cookRepository = cookRepository;*/
     }
 
 

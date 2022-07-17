@@ -18,11 +18,9 @@ public class LoadDataBase {
     CommandLineRunner initCook(ProductRepository productRepository){
         return args -> {
             log.info("Preloading " + productRepository
-                    .save(new Product(1L, "water",10)));
+                    .save(new Product(1L, "iphone 5",1, 10000)));
             log.info("Preloading " + productRepository
-                    .save(new Product(1L, "tea",7)));
-            log.info("Preloading " + productRepository
-                    .save(new Product(1L, "coffee",3)));
+                    .save(new Product(1L, "iphone 7",7,25000)));
         };
     }
     /*@Bean
