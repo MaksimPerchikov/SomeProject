@@ -1,6 +1,6 @@
 package com.someproject.configuration;
 
-import com.someproject.model.kitchen.Product;
+import com.someproject.model.newP.Product;
 import com.someproject.repository.ProductRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

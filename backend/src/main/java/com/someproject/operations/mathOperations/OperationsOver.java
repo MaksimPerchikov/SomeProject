@@ -1,6 +1,6 @@
 package com.someproject.operations.mathOperations;
 
-import com.someproject.model.kitchen.Product;
+import com.someproject.model.newP.Product;
 
 public abstract class OperationsOver {
 

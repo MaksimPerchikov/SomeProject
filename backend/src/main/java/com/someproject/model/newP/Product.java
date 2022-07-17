@@ -1,4 +1,4 @@
-package com.someproject.model.kitchen;
+package com.someproject.model.newP;
 
 import lombok.*;
 

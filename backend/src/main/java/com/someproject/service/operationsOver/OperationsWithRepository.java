@@ -1,6 +1,6 @@
 package com.someproject.service.operationsOver;
 
-import com.someproject.model.kitchen.Product;
+import com.someproject.model.newP.Product;
 import com.someproject.repository.ProductRepository;
 import com.someproject.service.operationsOver.interfaces.OperationsWithRepositoryInt;
 
