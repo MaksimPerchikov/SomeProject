@@ -4,8 +4,10 @@ import com.someproject.Exceptions.AllExceptions;
 import com.someproject.model.kitchen.Product;
 import com.someproject.service.operationsOver.OperationsWithRepository;
 import com.someproject.verifyWords.interfaces.DuplicateWordsInterface;
+
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +19,7 @@ public class DuplicateWordsVerify implements DuplicateWordsInterface {
 
     @Autowired
     public DuplicateWordsVerify(AllExceptions allExceptions,
-        OperationsWithRepository operations){
+                                OperationsWithRepository operations) {
         this.allExceptions = allExceptions;
         this.operations = operations;
     }
@@ -29,20 +31,20 @@ public class DuplicateWordsVerify implements DuplicateWordsInterface {
         try {
             List<Product> listProduct = operations.findAllProducts();
             String findDuplicateNameProduct = listProduct.stream()
-                .map(Product::getNameProduct)
-                .collect(Collectors.toList())
-                .stream().
-                filter(findName -> findName.equals(word))
-                .findFirst()
-                .orElse(null);
+                    .map(Product::getNameProduct)
+                    .collect(Collectors.toList())
+                    .stream().
+                    filter(findName -> findName.equals(word))
+                    .findFirst()
+                    .orElse(null);
 
-            if(findDuplicateNameProduct != null){
+            if (findDuplicateNameProduct != null) {
                 duplicateSignal = true;
                 return duplicateSignal;
             }
-        }catch (Exception exception){
+        } catch (Exception exception) {
             allExceptions.showMeExceptionWithMyMessage(
-                "Продукты отсутствуют ",exception
+                    "Продукты отсутствуют ", exception
             );
         }
         return duplicateSignal;

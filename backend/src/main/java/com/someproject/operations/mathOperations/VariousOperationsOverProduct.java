@@ -31,9 +31,9 @@ public class VariousOperationsOverProduct extends OperationsOver{
                 .filter(element -> element.getNameProduct().equals(product.getNameProduct()))
                 .findFirst();
 
-            int quantityOfFindProduct = productOperations.get().getQuantity();
-            int sum = quantityOfFindProduct + product.getQuantity();
-            productTwo.setQuantity(sum);
+            int quantityOfFindProduct = productOperations.get().getQuantityProduct();
+            int sum = quantityOfFindProduct + product.getQuantityProduct();
+            productTwo.setQuantityProduct(sum);
             operations.addProduct(productTwo);
 
             return productTwo;

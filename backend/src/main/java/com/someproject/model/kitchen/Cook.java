@@ -1,3 +1,4 @@
+/*
 package com.someproject.model.kitchen;
 
 import lombok.*;
@@ -24,3 +25,4 @@ public class Cook {
     @OneToOne
     private Ordering order;
 }
+*/

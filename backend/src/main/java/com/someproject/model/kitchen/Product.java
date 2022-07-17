@@ -18,15 +18,18 @@ public class Product {
 
     private String nameProduct;
 
-    private Integer quantity;
+    private Integer quantityProduct;
+
+    private Integer priceProduct;
 
     public Product() {
     }
 
-    public Product(Long id, String nameProduct, Integer quantity) {
+    public Product(Long id, String nameProduct, Integer quantityProduct, Integer priceProduct) {
         this.id = id;
         this.nameProduct = nameProduct;
-        this.quantity = quantity;
+        this.quantityProduct = quantityProduct;
+        this.priceProduct = priceProduct;
     }
 
     public Product(Long id){
