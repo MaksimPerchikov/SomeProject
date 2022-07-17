@@ -4,7 +4,7 @@ import com.someproject.model.kitchen.Product;
 
 import java.util.List;
 
-public interface CookOrderingMenuProductInterface {
+public interface MainInterfaceForGiveMethods {
 
     String addProductService(Product product);
     String deleteProductByIdService(Long id);

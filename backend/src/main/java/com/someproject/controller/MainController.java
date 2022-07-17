@@ -1,3 +1,4 @@
+/*
 package com.someproject.controller;
 
 import com.someproject.model.kitchen.Product;
@@ -46,3 +47,4 @@ public class MainController {
         return "Hello!";
     }
 }
+*/

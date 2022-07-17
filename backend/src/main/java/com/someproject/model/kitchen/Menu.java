@@ -1,3 +1,4 @@
+/*
 package com.someproject.model.kitchen;
 
 import lombok.*;
@@ -22,3 +23,4 @@ public class Menu {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Product> ingredientsInTheDish;
 }
+*/
