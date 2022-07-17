@@ -3,11 +3,7 @@ import { createTheme } from "@mui/material";
 export enum COLOR {
   RED = "RED",
   GREEN = "GREEN",
-  INPUT_BORDER = "INPUT_BORDER",
-  INPUT_BORDER_LIGHT = "INPUT_BORDER_LIGHT",
-  BUTTON_BORDER = "BUTTON_BORDER",
   DEFAULT = "DEFAULT",
-  TRANSPARENT = "TRANSPARENT",
 }
 
 declare module "@mui/material/styles" {
@@ -23,13 +19,9 @@ declare module "@mui/material/styles" {
     button: {
       background: string;
       color: string;
-      hover: string;
-      border: string;
     };
     input: {
       background: string;
-      border: string;
-      borderLight: string;
     };
   }
 
@@ -45,13 +37,9 @@ declare module "@mui/material/styles" {
     button?: {
       background?: string;
       color?: string;
-      hover?: string;
-      border?: string;
     };
     input?: {
       background?: string;
-      border?: string;
-      borderLight?: string;
     };
   }
 
@@ -95,13 +83,9 @@ const theme = createTheme({
     button: {
       background: "#101010",
       color: "#FFF",
-      hover: "#f5f5f5",
-      border: "rgba(97, 97, 97, .3)",
     },
     input: {
       background: "#FAFAFA",
-      border: "rgba(97, 97, 97, .6)",
-      borderLight: "rgba(97, 97, 97, .1)",
     },
     text: {
       primary: "#212121",
@@ -121,14 +105,6 @@ const theme = createTheme({
           return theme.palette.success.main;
         case COLOR.RED:
           return theme.palette.error.main;
-        case COLOR.INPUT_BORDER:
-          return theme.palette.input.border;
-        case COLOR.INPUT_BORDER_LIGHT:
-          return theme.palette.input.borderLight;
-        case COLOR.BUTTON_BORDER:
-          return theme.palette.button.border;
-        case COLOR.TRANSPARENT:
-          return "transparent";
         default:
           return "inherit";
       }
