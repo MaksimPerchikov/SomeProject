@@ -1,7 +1,7 @@
 /*
 package com.someproject.controller;
 
-import com.someproject.model.kitchen.Product;
+import com.someproject.model.newP.Product;
 import com.someproject.service.ServiceMainImplInter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

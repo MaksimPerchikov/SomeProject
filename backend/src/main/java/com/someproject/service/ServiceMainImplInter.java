@@ -1,7 +1,7 @@
 package com.someproject.service;
 
 import com.someproject.Exceptions.AllExceptions;
-import com.someproject.model.kitchen.Product;
+import com.someproject.model.newP.Product;
 import com.someproject.operations.mathOperations.OperationsOver;
 import com.someproject.operations.mathOperations.VariousOperationsOverProduct;
 import com.someproject.service.interfases.MainInterfaceForGiveMethods;

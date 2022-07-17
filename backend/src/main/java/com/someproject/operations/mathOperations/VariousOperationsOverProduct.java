@@ -2,7 +2,7 @@ package com.someproject.operations.mathOperations;
 
 import com.someproject.Exceptions.AllExceptions;
 import com.someproject.configuration.AllExceptionCreateBean;
-import com.someproject.model.kitchen.Product;
+import com.someproject.model.newP.Product;
 import com.someproject.service.operationsOver.OperationsWithRepository;
 import java.util.List;
 import java.util.Optional;

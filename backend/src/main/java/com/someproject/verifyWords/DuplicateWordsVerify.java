@@ -1,7 +1,7 @@
 package com.someproject.verifyWords;
 
 import com.someproject.Exceptions.AllExceptions;
-import com.someproject.model.kitchen.Product;
+import com.someproject.model.newP.Product;
 import com.someproject.service.operationsOver.OperationsWithRepository;
 import com.someproject.verifyWords.interfaces.DuplicateWordsInterface;
 

@@ -1,6 +1,6 @@
 package com.someproject.service.operationsOver.interfaces;
 
-import com.someproject.model.kitchen.Product;
+import com.someproject.model.newP.Product;
 
 import java.util.List;
 
